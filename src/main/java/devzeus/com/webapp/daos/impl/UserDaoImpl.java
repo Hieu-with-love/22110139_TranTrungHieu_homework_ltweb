@@ -78,7 +78,87 @@ public class UserDaoImpl extends DBConnectMySQL implements IUserDao {
     }
 
     @Override
-    public void insert(UserModel userModel) {
+    public boolean insertRegisterUser(UserModel userModel) {
+        String sql = new StringBuilder()
+                .append("INSERT INTO users(username, password, email, fullname, roleid, createdate, phone) ")
+                .append("VALUES(?,?,?,?,?,?,?)")
+                .toString();
 
+        try {
+            conn = getDatabaseConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, userModel.getUsername());
+            ps.setString(2, userModel.getPassword());
+            ps.setString(3, userModel.getEmail());
+            ps.setString(4, userModel.getFullname());
+            ps.setInt(5, userModel.getRoleid());
+            ps.setDate(6, userModel.getCreatedate());
+            ps.setString(7, userModel.getPhone());
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                return true;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            // Đóng các tài nguyên
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean checkExistEmail(String email) {
+        return check(email);
+    }
+
+    @Override
+    public boolean checkExistUsername(String username) {
+        return check(username);
+    }
+
+    @Override
+    public boolean checkExistPhone(String phone) {
+        return check(phone);
+    }
+
+    private boolean check(String param){
+        String sql = String.format("SELECT * FROM user WHERE %s=?", param);
+        boolean exists = false;
+        try {
+            // Kết nối cơ sở dữ liệu từ phương thức getDatabaseConnection()
+            conn = getDatabaseConnection();
+
+            // Chuẩn bị câu lệnh SQL với tham số
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, param);
+
+            // Thực thi truy vấn
+            rs = ps.executeQuery();
+
+            // Kiểm tra xem kết quả có tồn tại không
+            if (rs.next()) {
+                exists = true; // Nếu có kết quả trả về, email đã tồn tại
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            // Đóng các tài nguyên
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return exists;
     }
 }
