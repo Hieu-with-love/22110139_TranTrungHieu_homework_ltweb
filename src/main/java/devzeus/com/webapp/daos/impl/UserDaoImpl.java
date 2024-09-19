@@ -53,8 +53,8 @@ public class UserDaoImpl extends DBConnectMySQL implements IUserDao {
             ps = conn.prepareStatement(sql);
             ps.setString(1, username);
             rs = ps.executeQuery();
-            while (rs.next())
-            {
+            if (rs.next()) {
+                System.out.println("ResultSet has data.");
                 UserModel user = new UserModel();
                 user.setId(rs.getInt("id"));
                 user.setUsername(rs.getString("username"));
@@ -72,7 +72,6 @@ public class UserDaoImpl extends DBConnectMySQL implements IUserDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return null;
     }
 

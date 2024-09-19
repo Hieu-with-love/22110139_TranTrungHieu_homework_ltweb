@@ -70,15 +70,18 @@
   </style>
 </head>
 <body>
-<c:if test="${erorr !=null}">
-  <h3 class="alert alertdanger">${erorr}</h3>
-</c:if>
-
   <form action="forgot-password" class="container" method="post">
     <h1>Đây là form lấy lại mật khẩu</h1>
-    <c:if test="${password !=null}">
-      <h3 class="alert alertdanger">Mật khẩu của bạn là ${password}</h3>
+    <%-- Hiển thị thông báo lỗi nếu có --%>
+    <c:if test="${not empty error}">
+      <p style="color:red">${error}</p>
     </c:if>
+
+    <%-- Hiển thị mật khẩu nếu tồn tại --%>
+    <c:if test="${not empty password}">
+      <p>Your password is: <strong>${password}</strong></p>
+    </c:if>
+
     <div style="text-align: center;">
       <h3 style="text-align: center; margin: 2rem;">Nhập email để lấy lại mật khau</h3>
       <label for="username" style="margin-bottom: 20px;">Nhập user</label>
