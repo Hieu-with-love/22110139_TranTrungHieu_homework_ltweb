@@ -90,7 +90,7 @@ public class UserDaoImpl extends DBConnectMySQL implements IUserDao {
             ps.setString(2, userModel.getPassword());
             ps.setString(3, userModel.getEmail());
             ps.setString(4, userModel.getFullname());
-            ps.setInt(5, userModel.getRoleid());
+            ps.setInt(5, 1);
             ps.setDate(6, Date.valueOf(userModel.getCreatedate()));
             ps.setString(7, userModel.getPhone());
             int rowsAffected = ps.executeUpdate();

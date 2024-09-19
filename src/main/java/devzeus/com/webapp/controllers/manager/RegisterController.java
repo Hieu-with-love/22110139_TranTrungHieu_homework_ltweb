@@ -30,7 +30,7 @@ public class RegisterController extends HttpServlet {
         String password = req.getParameter("psw");
         String retypePassword = req.getParameter("psw-repeat");
         String email = req.getParameter("email");
-        String fullName = req.getParameter("fullName");
+        String fullName = req.getParameter("fullname");
         String phone = req.getParameter("phone");
         if (username.isEmpty()){
             msg = "username này đã tồn tại";
