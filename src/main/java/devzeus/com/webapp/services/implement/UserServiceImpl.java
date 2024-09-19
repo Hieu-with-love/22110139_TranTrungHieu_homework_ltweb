@@ -5,7 +5,7 @@ import devzeus.com.webapp.daos.impl.UserDaoImpl;
 import devzeus.com.webapp.models.UserModel;
 import devzeus.com.webapp.services.IUserService;
 
-public class UserService implements IUserService {
+public class UserServiceImpl implements IUserService {
     IUserDao userDao = new UserDaoImpl();
 
     @Override
@@ -53,7 +53,7 @@ public class UserService implements IUserService {
 
     public static void main(String[] args) {
         try{
-            IUserService userService = new UserService();
+            IUserService userService = new UserServiceImpl();
 
         }catch (Exception e){
             e.printStackTrace();

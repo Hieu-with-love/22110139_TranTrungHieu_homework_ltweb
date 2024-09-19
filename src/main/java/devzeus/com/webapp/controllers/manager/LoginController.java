@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import devzeus.com.webapp.models.UserModel;
-import devzeus.com.webapp.services.implement.UserService;
+import devzeus.com.webapp.services.implement.UserServiceImpl;
 
 import java.io.IOException;
 import java.io.Serial;
@@ -36,7 +36,7 @@ public class LoginController extends HttpServlet {
             req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
             return;
         }
-        UserService service = new UserService();
+        UserServiceImpl service = new UserServiceImpl();
         UserModel user = service.login(username, password);
         if(user!=null){
             HttpSession session = req.getSession(true);

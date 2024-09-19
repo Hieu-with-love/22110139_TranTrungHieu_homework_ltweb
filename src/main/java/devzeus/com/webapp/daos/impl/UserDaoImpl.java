@@ -4,10 +4,8 @@ import devzeus.com.webapp.configs.DBConnectMySQL;
 import devzeus.com.webapp.daos.IUserDao;
 import devzeus.com.webapp.models.UserModel;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,7 +63,8 @@ public class UserDaoImpl extends DBConnectMySQL implements IUserDao {
                 user.setFullname(rs.getString("fullname"));
                 user.setImage(rs.getString("image"));
                 user.setRoleid(rs.getInt("roleid"));
-                user.setCreatedate(rs.getDate("createdate"));
+                LocalDate date = rs.getDate("createdate").toLocalDate();
+                user.setCreatedate(date);
                 user.setPhone(rs.getString("phone"));
                 return user;
             }
@@ -92,7 +91,7 @@ public class UserDaoImpl extends DBConnectMySQL implements IUserDao {
             ps.setString(3, userModel.getEmail());
             ps.setString(4, userModel.getFullname());
             ps.setInt(5, userModel.getRoleid());
-            ps.setDate(6, userModel.getCreatedate());
+            ps.setDate(6, Date.valueOf(userModel.getCreatedate()));
             ps.setString(7, userModel.getPhone());
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected > 0) {

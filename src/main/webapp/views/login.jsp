@@ -93,7 +93,7 @@
     </div>
 
     <div class="container">
-        <h2>Tạo tài khoản mới</h2>
+        <h2>Đăng nhập vào hệ thống</h2>
         <c:if test="${alert !=null}">
             <h3 class="alert alertdanger">${alert}</h3>
         </c:if>
@@ -107,6 +107,9 @@
         <label>
             <input type="checkbox" checked="checked" name="remember"> Remember me
         </label>
+        <div class="container" style="text-align: center; margin-top: 16px;">
+            <span>Nếu bạn là người mới, hãy <a href="register">nhấn vào đây</a> để đăng ký.</span>
+        </div>
     </div>
 
     <div class="container" style="background-color:#f1f1f1">

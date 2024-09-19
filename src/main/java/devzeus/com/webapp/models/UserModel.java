@@ -1,6 +1,7 @@
 package devzeus.com.webapp.models;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class UserModel implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
@@ -11,20 +12,17 @@ public class UserModel implements java.io.Serializable {
     private String fullname;
     private String image;
     private int roleid;
-    private Date createdate;
+    private LocalDate createdate;
     private String phone;
 
     public UserModel() {
     }
 
-    public UserModel(int id, String username, String password, String email, String fullname, String image, int roleid, Date createdate, String phone) {
-        this.id = id;
+    public UserModel(String username, String password, String email, String fullname, LocalDate createdate, String phone) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.fullname = fullname;
-        this.image = image;
-        this.roleid = roleid;
         this.createdate = createdate;
         this.phone = phone;
     }
@@ -85,11 +83,11 @@ public class UserModel implements java.io.Serializable {
         this.roleid = roleid;
     }
 
-    public Date getCreatedate() {
+    public LocalDate getCreatedate() {
         return createdate;
     }
 
-    public void setCreatedate(Date createdate) {
+    public void setCreatedate(LocalDate createdate) {
         this.createdate = createdate;
     }
 
