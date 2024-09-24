@@ -1,0 +1,8 @@
+<sitemesh>
+    <mapping path="/admin/*" name="admin" decorator="admin.jsp"/>
+    <mapping path="/user/*" name="user" decorator="web.jsp"/>
+    <mapping path="/manager/*" name="manager" decorator="manager.jsp"/>
+
+    <!-- Exclude path from decoration. -->
+    <mapping path="/api*" exclude="true"/>
+</sitemesh>
