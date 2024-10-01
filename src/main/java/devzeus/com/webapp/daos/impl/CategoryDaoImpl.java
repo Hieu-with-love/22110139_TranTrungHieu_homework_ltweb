@@ -33,7 +33,7 @@ public class CategoryDaoImpl extends DBConnectMySQL implements ICategoryDao {
                 Category category = new Category();
                 category.setId(rs.getInt("id"));
                 category.setName(rs.getString("name"));
-                category.setIcon(rs.getString("icon"));
+                category.setImage(rs.getString("images"));
                 category.setStatus(rs.getInt("status"));
                 categoryList.add(category);
             }
@@ -56,7 +56,7 @@ public class CategoryDaoImpl extends DBConnectMySQL implements ICategoryDao {
             if (rs.next()){
                 category.setId(rs.getInt("id"));
                 category.setName(rs.getString("name"));
-                category.setIcon(rs.getString("icon"));
+                category.setImage(rs.getString("images"));
                 category.setStatus(rs.getInt("status"));
             }
             close(conn, ps, rs);
@@ -78,7 +78,7 @@ public class CategoryDaoImpl extends DBConnectMySQL implements ICategoryDao {
                 Category category = new Category();
                 category.setId(rs.getInt("id"));
                 category.setName(rs.getString("name"));
-                category.setIcon(rs.getString("icon"));
+                category.setImage(rs.getString("images"));
                 category.setStatus(rs.getInt("status"));
                 return category;
             }
@@ -102,7 +102,7 @@ public class CategoryDaoImpl extends DBConnectMySQL implements ICategoryDao {
                 Category category = new Category();
                 category.setId(rs.getInt("id"));
                 category.setName(rs.getString("name"));
-                category.setIcon(rs.getString("icon"));
+                category.setImage(rs.getString("images"));
                 category.setStatus(rs.getInt("status"));
                 categoryList.add(category);
             }
@@ -115,12 +115,12 @@ public class CategoryDaoImpl extends DBConnectMySQL implements ICategoryDao {
 
     @Override
     public void insert(Category category) {
-        sql = "insert into categories (name, icon, status) values (?, ?, ?)";
+        sql = "insert into categories (name, images, status) values (?, ?, ?)";
         try{
             conn = getDatabaseConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, category.getName());
-            ps.setString(2, category.getIcon());
+            ps.setString(2, category.getImage());
             ps.setInt(3, category.getStatus());
             ps.executeUpdate();
             close(conn, ps, rs);
@@ -131,12 +131,12 @@ public class CategoryDaoImpl extends DBConnectMySQL implements ICategoryDao {
 
     @Override
     public void update(int id, Category category) {
-        sql = "update categories set name = ?, icon = ?, status = ? where id = ?";
+        sql = "update categories set name = ?, images = ?, status = ? where id = ?";
         try{
             conn = getDatabaseConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, category.getName());
-            ps.setString(2, category.getIcon());
+            ps.setString(2, category.getImage());
             ps.setInt(3, category.getStatus());
             ps.setInt(4, id);
             ps.executeUpdate();

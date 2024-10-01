@@ -11,6 +11,10 @@
     <title>Title</title>
 </head>
 <body>
+<%@ include file="/commons/user/header.jsp"%>
 
+<sitemesh:write property="body"/>
+
+<%@ include file="/commons/user/footer.jsp"%>
 </body>
 </html>

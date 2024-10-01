@@ -45,12 +45,12 @@ public class Category implements Serializable {
         this.name = name;
     }
 
-    public String getIcon() {
+    public String getImage() {
         return image;
     }
 
-    public void setIcon(String icon) {
-        this.image = icon;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override
